@@ -1,0 +1,107 @@
+info:
+  contact:
+    email: simon_yang@aliyun.com
+    name: API Support
+    url: http://www.simonblog.cn
+  description: This is a gin-api server Petstore server.
+  license: {}
+  title: Gin API
+  version: "1.0"
+paths:
+  /users/captcha/{mobile}:
+    get:
+      description: 获取图片验证码
+      parameters:
+      - description: Mobile
+        in: path
+        name: mobile
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"succeed":false,"data":{},"errorCode":100002,"errorMessage":"请求参数错误"}'
+          schema:
+            type: string
+      summary: 获取图片验证码
+      tags:
+      - User
+  /users/login:
+    post:
+      description: 密码登录，验证码登录
+      parameters:
+      - description: Mobile
+        in: query
+        name: mobile
+        required: true
+        type: string
+      - description: Password
+        in: query
+        name: password
+        type: string
+      - description: Code
+        in: query
+        name: code
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"succeed":false,"data":{},"errorCode":100002,"errorMessage":"请求参数错误"}'
+          schema:
+            type: string
+      summary: 登录
+      tags:
+      - User
+  /users/register:
+    post:
+      description: 新用户注册
+      parameters:
+      - description: Mobile
+        in: query
+        name: mobile
+        required: true
+        type: string
+      - description: Password
+        in: query
+        name: password
+        type: string
+      - description: Code
+        in: query
+        name: code
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"succeed":false,"data":{},"errorCode":100002,"errorMessage":"请求参数错误"}'
+          schema:
+            type: string
+      summary: 注册
+      tags:
+      - User
+  /users/vcode/{mobile}:
+    get:
+      description: 发送短信验证码
+      parameters:
+      - description: Mobile
+        in: path
+        name: mobile
+        required: true
+        type: string
+      - description: Captcha
+        in: query
+        name: captcha
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{"succeed":false,"data":{},"errorCode":100002,"errorMessage":"请求参数错误"}'
+          schema:
+            type: string
+      summary: 发送短信验证码
+      tags:
+      - User
+swagger: "2.0"
